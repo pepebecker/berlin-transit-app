@@ -1,0 +1,6 @@
+framework module Pods_Berlin_Transit {
+  umbrella header "Pods-Berlin Transit-umbrella.h"
+
+  export *
+  module * { export * }
+}

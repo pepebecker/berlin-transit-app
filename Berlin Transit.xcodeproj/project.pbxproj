@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0558BF1951F6FB173271EFAD /* Pods_Berlin_Transit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */; };
+		B10611C71E54E80100696685 /* Toolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C61E54E80100696685 /* Toolbox.swift */; };
+		B10611C91E54ED1200696685 /* LinesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C81E54ED1200696685 /* LinesTableVC.swift */; };
+		B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */; };
+		B1B372551E578191001B867E /* LineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B372541E578191001B867E /* LineCell.swift */; };
+		B1B593F01E6083DF00DBC5AB /* DeparturesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */; };
+		B1BC897E1E549098000C82C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC897D1E549098000C82C1 /* AppDelegate.swift */; };
+		B1BC89831E549098000C82C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89811E549098000C82C1 /* Main.storyboard */; };
+		B1BC89851E549098000C82C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89841E549098000C82C1 /* Assets.xcassets */; };
+		B1BC89881E549098000C82C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */; };
+		B1BC89901E549239000C82C1 /* StationsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC898F1E549239000C82C1 /* StationsTableVC.swift */; };
+		B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBAE941E54B4C300F3BDAE /* MapVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		229A920EFA154B50973E1D2D /* Pods-Berlin Transit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Berlin Transit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit.release.xcconfig"; sourceTree = "<group>"; };
+		B10611C61E54E80100696685 /* Toolbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbox.swift; sourceTree = "<group>"; };
+		B10611C81E54ED1200696685 /* LinesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinesTableVC.swift; sourceTree = "<group>"; };
+		B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableVC.swift; sourceTree = "<group>"; };
+		B1B372541E578191001B867E /* LineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCell.swift; sourceTree = "<group>"; };
+		B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeparturesTableVC.swift; sourceTree = "<group>"; };
+		B1BC897A1E549098000C82C1 /* Berlin Transit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Transit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1BC897D1E549098000C82C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B1BC89821E549098000C82C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B1BC89841E549098000C82C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B1BC89871E549098000C82C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B1BC89891E549098000C82C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1BC898F1E549239000C82C1 /* StationsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsTableVC.swift; sourceTree = "<group>"; };
+		B1CED7E51E619B3000E184A0 /* transitfront-negativ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "transitfront-negativ.ttf"; sourceTree = "<group>"; };
+		B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Berlin_Transit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FBAE941E54B4C300F3BDAE /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		B4707FF69AD334DDE84A7298 /* Pods-Berlin Transit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Berlin Transit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1BC89771E549098000C82C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0558BF1951F6FB173271EFAD /* Pods_Berlin_Transit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1BC89711E549098000C82C1 = {
+			isa = PBXGroup;
+			children = (
+				B1BC897C1E549098000C82C1 /* Berlin Transit */,
+				B1BC897B1E549098000C82C1 /* Products */,
+				B1E33C131E5B9A15003D9AB0 /* Frameworks */,
+				D42EE10C0B49546D91988235 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		B1BC897B1E549098000C82C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1BC897A1E549098000C82C1 /* Berlin Transit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1BC897C1E549098000C82C1 /* Berlin Transit */ = {
+			isa = PBXGroup;
+			children = (
+				B1BC897D1E549098000C82C1 /* AppDelegate.swift */,
+				B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */,
+				B1BC898F1E549239000C82C1 /* StationsTableVC.swift */,
+				B10611C81E54ED1200696685 /* LinesTableVC.swift */,
+				B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */,
+				B1B372541E578191001B867E /* LineCell.swift */,
+				B1FBAE941E54B4C300F3BDAE /* MapVC.swift */,
+				B1BC89811E549098000C82C1 /* Main.storyboard */,
+				B10611C61E54E80100696685 /* Toolbox.swift */,
+				B1BC89841E549098000C82C1 /* Assets.xcassets */,
+				B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */,
+				B1BC89891E549098000C82C1 /* Info.plist */,
+				B1CED7E51E619B3000E184A0 /* transitfront-negativ.ttf */,
+			);
+			path = "Berlin Transit";
+			sourceTree = "<group>";
+		};
+		B1E33C131E5B9A15003D9AB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D42EE10C0B49546D91988235 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4707FF69AD334DDE84A7298 /* Pods-Berlin Transit.debug.xcconfig */,
+				229A920EFA154B50973E1D2D /* Pods-Berlin Transit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1BC89791E549098000C82C1 /* Berlin Transit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1BC898C1E549098000C82C1 /* Build configuration list for PBXNativeTarget "Berlin Transit" */;
+			buildPhases = (
+				912005C42DAB890A15E28D4D /* [CP] Check Pods Manifest.lock */,
+				B1BC89761E549098000C82C1 /* Sources */,
+				B1BC89771E549098000C82C1 /* Frameworks */,
+				B1BC89781E549098000C82C1 /* Resources */,
+				640283C9983686313BCD2F74 /* [CP] Embed Pods Frameworks */,
+				40D0B15DB79F751571954D21 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Berlin Transit";
+			productName = "Berlin Transit";
+			productReference = B1BC897A1E549098000C82C1 /* Berlin Transit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1BC89721E549098000C82C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Pepe Becker";
+				TargetAttributes = {
+					B1BC89791E549098000C82C1 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CV2G6G29G8;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = B1BC89751E549098000C82C1 /* Build configuration list for PBXProject "Berlin Transit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B1BC89711E549098000C82C1;
+			productRefGroup = B1BC897B1E549098000C82C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1BC89791E549098000C82C1 /* Berlin Transit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B1BC89781E549098000C82C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1BC89881E549098000C82C1 /* LaunchScreen.storyboard in Resources */,
+				B1BC89851E549098000C82C1 /* Assets.xcassets in Resources */,
+				B1BC89831E549098000C82C1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		40D0B15DB79F751571954D21 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		640283C9983686313BCD2F74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		912005C42DAB890A15E28D4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1BC89761E549098000C82C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10611C91E54ED1200696685 /* LinesTableVC.swift in Sources */,
+				B1BC89901E549239000C82C1 /* StationsTableVC.swift in Sources */,
+				B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */,
+				B1B372551E578191001B867E /* LineCell.swift in Sources */,
+				B1B593F01E6083DF00DBC5AB /* DeparturesTableVC.swift in Sources */,
+				B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */,
+				B1BC897E1E549098000C82C1 /* AppDelegate.swift in Sources */,
+				B10611C71E54E80100696685 /* Toolbox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B1BC89811E549098000C82C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1BC89821E549098000C82C1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1BC89871E549098000C82C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B1BC898A1E549098000C82C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1BC898B1E549098000C82C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1BC898D1E549098000C82C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4707FF69AD334DDE84A7298 /* Pods-Berlin Transit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CV2G6G29G8;
+				INFOPLIST_FILE = "Berlin Transit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepebecker.transit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B1BC898E1E549098000C82C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 229A920EFA154B50973E1D2D /* Pods-Berlin Transit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CV2G6G29G8;
+				INFOPLIST_FILE = "Berlin Transit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepebecker.transit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1BC89751E549098000C82C1 /* Build configuration list for PBXProject "Berlin Transit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1BC898A1E549098000C82C1 /* Debug */,
+				B1BC898B1E549098000C82C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1BC898C1E549098000C82C1 /* Build configuration list for PBXNativeTarget "Berlin Transit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1BC898D1E549098000C82C1 /* Debug */,
+				B1BC898E1E549098000C82C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1BC89721E549098000C82C1 /* Project object */;
+}
