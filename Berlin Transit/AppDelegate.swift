@@ -7,18 +7,30 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var selectedStation = Station()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         if let tabBarVC = window?.rootViewController as? UITabBarController {
+            if let stationPicker = tabBarVC.viewControllers?[1] as? StationPicker {
+                stationPicker.pickerDelegate = self
+            }
+            
             tabBarVC.selectedIndex = 1
+            let size = CGSize(width: 30, height: 30)
+            tabBarVC.viewControllers?[0].tabBarItem.image = UIImage.fontAwesomeIcon(name: .heartO, textColor: .black, size: size)
+            tabBarVC.viewControllers?[0].tabBarItem.selectedImage = UIImage.fontAwesomeIcon(name: .heart, textColor: .black, size: size)
+            tabBarVC.viewControllers?[1].tabBarItem.image = UIImage.fontAwesomeIcon(name: .search, textColor: .black, size: size)
+            tabBarVC.viewControllers?[3].tabBarItem.image = UIImage.fontAwesomeIcon(name: .mapO, textColor: .black, size: size)
+            tabBarVC.viewControllers?[3].tabBarItem.selectedImage = UIImage.fontAwesomeIcon(name: .map, textColor: .black, size: size)
         }
 
         downloadColors()
@@ -47,7 +59,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
-
+extension AppDelegate: StationPickerDelegate {
+    func stationPicker(didPickStation station: Station, sender: StationPicker) {
+        selectedStation = station
+        sender.performSegue(withIdentifier: "showLines", sender: sender)
+    }
+    
+    func stationPicker(prepareFor segue: UIStoryboardSegue, sender: StationPicker) {
+        if segue.identifier == "showLines" {
+            if let linesTableVC = segue.destination as? LinesTableVC {
+                linesTableVC.title = self.selectedStation.name
+                linesTableVC.station = self.selectedStation
+                MBProgressHUD.showWithCancelAdded(to: sender.view, animated: true)
+            }
+        }
+    }
 }
 

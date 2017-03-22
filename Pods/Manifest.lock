@@ -1,12 +1,15 @@
 PODS:
+  - FontAwesome.swift (1.0.0)
   - MBProgressHUD (1.0.0)
 
 DEPENDENCIES:
+  - FontAwesome.swift
   - MBProgressHUD (~> 1.0.0)
 
 SPEC CHECKSUMS:
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
-PODFILE CHECKSUM: 4c5eea83c6ee7c915e6c6c7b6fa0ef50845db6a6
+PODFILE CHECKSUM: 871f520ae4486463382d9c37d2767a634c7b6349
 
 COCOAPODS: 1.2.0

@@ -10,93 +10,62 @@ import UIKit
 
 class DeparturesTableVC: UITableViewController {
     
-    var station = [String:Any]()
-    var currentLine = String()
+    var station = Station()
+    var currentLine = Line()
     var departures = [[String:Any]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.departures = self.createTableDeparturesList(deps: self.departures)
+        self.tableView.allowsSelection = false
+        
         self.tableView.reloadData()
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.refreshControl?.beginRefreshing()
+        self.tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height)!), animated: true)
+        self.refreshData()
+    }
+    
     func refreshData() {
-        loadDeparturesData(id: self.station["id"] as! String) { deps in
-            DispatchQueue.main.async {
-                self.departures = self.createTableDeparturesList(deps: deps)
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
+        DataKit.getLines(id: self.station.id, duration: 60) { lines, error in
+            guard error == nil else {
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
-        }
-    }
-    
-    func createTableDeparturesList(deps: [[String:Any]]) -> [[String:Any]] {
-        var list = [[String:Any]]()
-        
-        let sorted = deps.sorted(by: { (dep1, dep2) -> Bool in
-            if let when1 = dep1["when"] as? Int, let when2 = dep2["when"] as? Int {
-                return when1 < when2
-            } else {
-                return false
-            }
-        })
-        
-        for dep in sorted {
-            var departure = [String:Any]()
-            if let product = dep["product"] as? [String:Any] {
-                if let line = product["line"] as? String {
-                    if self.currentLine != line {
-                        continue
-                    }
+            
+            self.departures.removeAll()
+            for line in lines {
+                if line.name == self.currentLine.name {
+                    self.departures.append(["direction": line.direction1, "time": line.when1])
                 }
             }
-            if let direction = dep["direction"] as? String {
-                departure["direction"] = direction
-            }
-            if let when = dep["when"] as? Int {
-                let now = NSDate()
-                let date = Date(timeIntervalSince1970: TimeInterval(when))
-                let calendar = NSCalendar.current
-                let minutes = calendar.component(.minute, from: date)
-                let nowMinutes = calendar.component(.minute, from: now as Date)
-                let time = minutes - nowMinutes
-                var timeText = String()
-                if (time == 0) {
-                    timeText = "now"
+            
+            self.departures = self.departures.sorted(by: { (dep1, dep2) -> Bool in
+                if let time1 = dep1["time"] as? Int, let time2 = dep2["time"] as? Int {
+                    return time1 < time2
                 } else {
-                    timeText = "\(time) min"
+                    return false
                 }
-                departure["time"] = timeText
-            }
-            list.append(departure)
+            })
+            
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
-        return list
     }
     
-    func loadDeparturesData(id: String, completion: @escaping ([[String:Any]])->Void) {
-        if let id = self.station["id"] as? String {
-            if let url = URL(string: "https://transport.rest/stations/\(id)/departures") {
-                makeRequest(request: URLRequest(url: url)) { deps in
-                    if let deps = deps as? [[String:Any]] {
-                        completion(deps)
-                    }
-                }
-            }
-        }
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.departures.count > 0 {
-            return 1
-        } else {
-            return 0
-        }
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,26 +74,23 @@ class DeparturesTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "departureCell", for: indexPath)
-
+        
         if let direction = self.departures[indexPath.row]["direction"] as? String {
             cell.textLabel?.text = direction
         }
-        
-        if let time = self.departures[indexPath.row]["time"] as? String {
-            cell.detailTextLabel?.text = time
+
+        if let time = self.departures[indexPath.row]["time"] as? Int {
+            let minutes = TimeInterval(time).getMinutes()
+            
+            var text = "\(minutes) min"
+            if minutes <= 0 {
+                text = "now"
+            }
+            
+            cell.detailTextLabel?.text = text
         }
 
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

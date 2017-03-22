@@ -8,31 +8,34 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 var currentTask: URLSessionDataTask?
 
 let VBB_LOGOS: [String] = ["bus", "express-bus", "express", "ferry", "metro-bus", "metro-tram",
                            "on-call-bus", "regional", "special-bus", "suburban", "subway", "tram"]
 
-func makeRequest(request: URLRequest, completion: @escaping (Any)->Void) {
+func makeRequest(request: URLRequest, completion: @escaping (Any, Error?)->Void) {
     if currentTask != nil {
         currentTask?.cancel()
     }
     
     currentTask = URLSession.shared.dataTask(with: request) { data, response, error in
         guard error == nil else {
-            print(error!)
+            print("Error sending request: \(error!.localizedDescription)")
+            completion([], error)
             return
         }
         
         guard let data = data else {
             print("Data is empty")
+            completion([], error)
             return
         }
         
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: [])
-            completion(json)
+            completion(json, nil)
         } catch {
             print("Error serializing JSON: \(error)")
         }
@@ -41,56 +44,49 @@ func makeRequest(request: URLRequest, completion: @escaping (Any)->Void) {
     currentTask?.resume()
 }
 
-func loadFavorites() -> [[String:Any]] {
+func loadFavorites() -> [Station] {
     let defaults = UserDefaults.standard
-    if let list = defaults.array(forKey: "favoriteStations") as? [[String:Any]] {
+    if let list = defaults.array(forKey: "favoriteStations") as? [Station] {
         return list
     } else {
         return []
     }
 }
 
-func compareStations(station1: [String:Any], station2: [String:Any]) -> Bool {
-    if let station1_id = station1["id"] as? String, let station2_id = station2["id"] as? String {
-        return station1_id == station2_id
-    } else {
-        return false
-    }
-}
 
-func isFavoriteStation(station: [String:Any]) -> Bool {
+func isFavoriteStation(station: Station) -> Bool {
     for favorite in loadFavorites() {
-        if compareStations(station1: station, station2: favorite) {
-            return true
+        if station.id == favorite.id {
+           return true
         }
     }
     return false
 }
 
-func addToFavoriteStations(station: [String:Any]) {
-    let defaults = UserDefaults.standard
-    
-    var favoriteStations = Array(loadFavorites())
-    
-    if !isFavoriteStation(station: station) {
-        favoriteStations.append(station)
-        defaults.set(favoriteStations, forKey: "favoriteStations")
-    }
+func addToFavoriteStations(station: Station) {
+//    let defaults = UserDefaults.standard
+//    
+//    var favoriteStations = Array(loadFavorites())
+//    
+//    if !isFavoriteStation(station: station) {
+//        favoriteStations.append(station)
+//        defaults.set(favoriteStations, forKey: "favoriteStations")
+//    }
 }
 
-func removeFromFavoriteStations(station: [String:Any]) {
-    let defaults = UserDefaults.standard
-    
-    var favoriteStations = Array(loadFavorites())
-    
-    if isFavoriteStation(station: station) {
-        if let index = favoriteStations.index(where: { (_station) -> Bool in
-            return compareStations(station1: station, station2: _station)
-        }) {
-            favoriteStations.remove(at: index)
-            defaults.set(favoriteStations, forKey: "favoriteStations")
-        }
-    }
+func removeFromFavoriteStations(station: Station) {
+//    let defaults = UserDefaults.standard
+//    
+//    var favoriteStations = Array(loadFavorites())
+//    
+//    if isFavoriteStation(station: station) {
+//        if let index = favoriteStations.index(where: { (_station) -> Bool in
+//            return compareStations(station1: station, station2: _station)
+//        }) {
+//            favoriteStations.remove(at: index)
+//            defaults.set(favoriteStations, forKey: "favoriteStations")
+//        }
+//    }
 }
 
 func moveFavoriteStation(fromIndex: Int, toIndex: Int) {
@@ -110,7 +106,7 @@ func moveFavoriteStation(fromIndex: Int, toIndex: Int) {
 
 func downloadColors() {
     if let url = URL(string: "https://cdn.rawgit.com/derhuerst/vbb-util/f172b1f/lines/colors.json") {
-        makeRequest(request: URLRequest(url: url), completion: { colors in
+        makeRequest(request: URLRequest(url: url), completion: { colors, error in
             if let colors = colors as? [String:Any] {
                 let defaults = UserDefaults.standard
                 defaults.set(colors, forKey: "colors")
@@ -148,28 +144,12 @@ func loadColors() -> [String:[String:Any]]? {
 
 extension TimeInterval {
     func getMinutes() -> Int {
-        var asInt   = NSInteger(self)
-        let ago = (asInt < 0)
+        let futureTime = Date(timeIntervalSince1970: self)
+        let seconds = futureTime.timeIntervalSinceNow
         
-        if (ago) {
-            asInt = -asInt
-        }
+        let minutes = Int(Double(seconds / 60).rounded(.up))
         
-        let minutes = (asInt / 60) % 60
-//        let hours = ((asInt / 3600))%24
-//        
-//        minutes += hours * 60
-        
-        let now = NSDate()
-        let calendar = NSCalendar.current
-        let nowMinutes = calendar.component(.minute, from: now as Date)
-//        let nowHours = calendar.component(.hour, from: now as Date)
-//        
-//        nowMinutes += nowHours * 60
-        
-        let time = minutes - nowMinutes
-        
-        return time
+        return minutes
     }
 }
 
@@ -217,5 +197,20 @@ extension UIColor {
             green: CGFloat(g) / 0xff,
             blue: CGFloat(b) / 0xff, alpha: 1
         )
+    }
+}
+
+var activeHudView = UIView()
+
+extension MBProgressHUD {
+    class func tapHide() {
+        self.hide(for: activeHudView, animated: true)
+    }
+    
+    class func showWithCancelAdded(to: UIView, animated: Bool) {
+        activeHudView = to
+        let hud = self.showAdded(to: to, animated: animated)
+        hud.detailsLabel.text = "Tap to cancel"
+        hud.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapHide)))
     }
 }

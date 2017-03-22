@@ -11,8 +11,8 @@ import MBProgressHUD
 
 class FavoritesTableVC: UITableViewController {
     
-    var stations = [[String:Any]]()
-    var selectedStation = [String:Any]()
+    var stations = [Station]()
+    var selectedStation = Station()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,9 @@ class FavoritesTableVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 20)] as [String: Any]
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes(attributes, for: .normal)
+        self.navigationItem.leftBarButtonItem?.title = String.fontAwesomeIcon(name: .bars)
         self.navigationItem.leftBarButtonItem?.target = self
         self.navigationItem.leftBarButtonItem?.action = #selector(reorderButtonPressed)
         
@@ -54,7 +57,7 @@ class FavoritesTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stationCell", for: indexPath)
 
-        cell.textLabel?.text = self.stations[indexPath.row]["name"] as? String
+        cell.textLabel?.text = self.stations[indexPath.row].name
 
         return cell
     }
@@ -78,10 +81,8 @@ class FavoritesTableVC: UITableViewController {
         self.selectedStation = self.stations[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let linesTableVC = storyboard.instantiateViewController(withIdentifier: "linesTableCV") as? LinesTableVC {
-            if let name = self.selectedStation["name"] as? String {
-                linesTableVC.title = name
-                linesTableVC.station = self.selectedStation
-            }
+            linesTableVC.title = self.selectedStation.name
+            linesTableVC.station = self.selectedStation
             if let navView = self.navigationController?.view {
                 MBProgressHUD.showAdded(to: navView, animated: true)
             }

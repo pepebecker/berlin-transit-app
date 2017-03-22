@@ -11,7 +11,7 @@ import UIKit
 class LineCell: UITableViewCell {
     
     enum LineShape {
-        case Roud
+        case Round
         case Rect
     }
 
@@ -22,13 +22,11 @@ class LineCell: UITableViewCell {
     @IBOutlet var direction2Label: UILabel!
     @IBOutlet var time1Label: UILabel!
     @IBOutlet var time2Label: UILabel!
+    @IBOutlet weak var centerDirection1Label: NSLayoutConstraint!
     
     var lineShape: LineShape = .Rect
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    var lineTextColor: UIColor = .darkText
+    var lineBackgroundColor: UIColor = .lightGray
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -42,23 +40,20 @@ class LineCell: UITableViewCell {
             } else {
                 self.lineRect.layer.cornerRadius = self.lineRect.frame.height / 2
             }
+            self.lineRect.backgroundColor = self.lineBackgroundColor
+            self.lineLabel.textColor = self.lineTextColor
+            self.lineLabel.isHidden = false
+            self.lineRect.isHidden = false
         }
         
         if (self.direction2Label.text?.isEmpty)! {
             self.direction2Label.isHidden = true
-            self.direction1Label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
-        }
-        
-        if (self.time2Label.text?.isEmpty)! {
             self.time2Label.isHidden = true
-            self.time1Label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+            self.centerDirection1Label.priority = UILayoutPriorityDefaultHigh
+        } else {
+            self.direction2Label.isHidden = false
+            self.time2Label.isHidden = false
+            self.centerDirection1Label.priority = UILayoutPriorityDefaultLow
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
