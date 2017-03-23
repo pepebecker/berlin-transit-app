@@ -53,20 +53,21 @@ class AvailableRoutesTableVC: UITableViewController {
             print("Failed to create request url")
         }
     }
+}
 
-    // MARK: - Table view data source
-
+//MARK: - UITableViewDelegate
+extension AvailableRoutesTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.availableRoutes.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for: indexPath)
-
+        
         if let parts = self.availableRoutes[indexPath.row]["parts"] as? [[String:Any]] {
             var content = String()
             for part in parts {
@@ -78,7 +79,11 @@ class AvailableRoutesTableVC: UITableViewController {
             }
             cell.textLabel?.text = content
         }
-
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }

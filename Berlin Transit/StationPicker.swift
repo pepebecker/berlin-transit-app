@@ -29,6 +29,7 @@ import FontAwesome_swift
     var isUpdatingLocation = false
     var currentLocationText = "Current Location"
     var progressHud: MBProgressHUD?
+    var noNearbyStationsFound = false
     
     // SearchBar
     let searchBar = UISearchBar()
@@ -85,6 +86,8 @@ import FontAwesome_swift
         self.searchTextField = self.searchBar.value(forKey: "searchField") as! UITextField
         self.searchTextField.returnKeyType = .done
         self.searchTextField.enablesReturnKeyAutomatically = false
+        
+        self.tabBarController?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +95,7 @@ import FontAwesome_swift
         
         self.tableViewController.title = self.title
         
-        if let text = self.searchBar.text, text.isEmpty {
+        if self.stations.count <= 0 {
             self.tableViewController.tableView.scrollRectToVisible(self.searchBar.frame, animated: true)
         }
         
@@ -150,6 +153,8 @@ import FontAwesome_swift
             DataKit.getNearbyStations(location: location) { nearbyStations, error in
                 self.stations = nearbyStations
                 
+                self.noNearbyStationsFound = self.stations.count <= 0
+                
                 self.tableViewController.tableView.reloadData()
                 if let progressHud = self.progressHud {
                     progressHud.hide(animated: true)
@@ -186,9 +191,6 @@ import FontAwesome_swift
     }
     
     func setSearchBar(useCurrentLocation: Bool) {
-        self.stations.removeAll()
-        self.tableViewController.tableView.reloadData()
-        
         if (useCurrentLocation) {
             self.searchTextField.textColor = self.view.tintColor
             self.searchTextField.text = currentLocationText
@@ -200,11 +202,21 @@ import FontAwesome_swift
             self.searchTextField.textColor = UIColor.darkText
             self.searchBar.setImage(searchBarIcon, for: .search, state: .normal)
             usingCurrentLocation = false
+            self.noNearbyStationsFound = false
         }
+        
+        self.stations.removeAll()
+        self.tableViewController.tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.pickerDelegate?.stationPicker?(prepareFor: segue, sender: self)
+    }
+}
+
+extension StationPicker: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        self.tableViewController.tableView.scrollRectToVisible(self.searchBar.frame, animated: true)
     }
 }
 
@@ -232,7 +244,11 @@ extension StationPicker: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.textAlignment = .left
             cell.selectionStyle = .default
         } else {
-            cell.textLabel?.text = "Please search for a station."
+            if self.noNearbyStationsFound {
+                cell.textLabel?.text = "There are no stations nearby."
+            } else {
+                cell.textLabel?.text = "Please search for a station."
+            }
             cell.textLabel?.textColor = UIColor.darkGray
             cell.textLabel?.textAlignment = .center
             cell.selectionStyle = .none
@@ -260,6 +276,10 @@ extension StationPicker: UITableViewDelegate, UITableViewDataSource {
                 self.searchBar.becomeFirstResponder()
             }
         }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
     }
 }
 

@@ -12,6 +12,7 @@
 		B10611C91E54ED1200696685 /* LinesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C81E54ED1200696685 /* LinesTableVC.swift */; };
 		B14EB5601E80789300D62773 /* AvailableRoutesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */; };
 		B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */; };
+		B18A77FD1E835D3B00AA8DC1 /* RoutePlaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */; };
 		B19506A11E81F56D00AC904C /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19506A01E81F56D00AC904C /* Line.swift */; };
 		B19F00011E818D6900617D60 /* StationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19F00001E818D6900617D60 /* StationPicker.swift */; };
 		B19FFFFB1E80C07000617D60 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19FFFFA1E80C07000617D60 /* Station.swift */; };
@@ -23,10 +24,8 @@
 		B1BC89831E549098000C82C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89811E549098000C82C1 /* Main.storyboard */; };
 		B1BC89851E549098000C82C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89841E549098000C82C1 /* Assets.xcassets */; };
 		B1BC89881E549098000C82C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */; };
-		B1BC89901E549239000C82C1 /* StationsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC898F1E549239000C82C1 /* StationsTableVC.swift */; };
 		B1E33C151E5B9A15003D9AB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E33C141E5B9A15003D9AB0 /* MapKit.framework */; };
 		B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBAE941E54B4C300F3BDAE /* MapVC.swift */; };
-		B1FC54FD1E80B40300BBC05F /* SearchRouteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC54FC1E80B40300BBC05F /* SearchRouteVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +34,7 @@
 		B10611C81E54ED1200696685 /* LinesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinesTableVC.swift; sourceTree = "<group>"; };
 		B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoutesTableVC.swift; sourceTree = "<group>"; };
 		B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableVC.swift; sourceTree = "<group>"; };
+		B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlaner.swift; sourceTree = "<group>"; };
 		B19506A01E81F56D00AC904C /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		B19F00001E818D6900617D60 /* StationPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationPicker.swift; sourceTree = "<group>"; };
 		B19FFFFA1E80C07000617D60 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
@@ -48,12 +48,10 @@
 		B1BC89841E549098000C82C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1BC89871E549098000C82C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1BC89891E549098000C82C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B1BC898F1E549239000C82C1 /* StationsTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationsTableVC.swift; sourceTree = "<group>"; };
 		B1CED7E51E619B3000E184A0 /* transitfront-negativ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "transitfront-negativ.ttf"; sourceTree = "<group>"; };
 		B1E33C141E5B9A15003D9AB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Berlin_Transit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FBAE941E54B4C300F3BDAE /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
-		B1FC54FC1E80B40300BBC05F /* SearchRouteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRouteVC.swift; sourceTree = "<group>"; };
 		B4707FF69AD334DDE84A7298 /* Pods-Berlin Transit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Berlin Transit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,14 +71,13 @@
 		B14EB5611E80792100D62773 /* Controlers */ = {
 			isa = PBXGroup;
 			children = (
-				B1BC898F1E549239000C82C1 /* StationsTableVC.swift */,
 				B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */,
 				B19F00001E818D6900617D60 /* StationPicker.swift */,
 				B10611C81E54ED1200696685 /* LinesTableVC.swift */,
 				B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */,
-				B1FBAE941E54B4C300F3BDAE /* MapVC.swift */,
-				B1FC54FC1E80B40300BBC05F /* SearchRouteVC.swift */,
+				B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */,
 				B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */,
+				B1FBAE941E54B4C300F3BDAE /* MapVC.swift */,
 			);
 			name = Controlers;
 			sourceTree = "<group>";
@@ -290,8 +287,6 @@
 				B19FFFFD1E80CD4000617D60 /* DataKit.swift in Sources */,
 				B14EB5601E80789300D62773 /* AvailableRoutesTableVC.swift in Sources */,
 				B19F00011E818D6900617D60 /* StationPicker.swift in Sources */,
-				B1BC89901E549239000C82C1 /* StationsTableVC.swift in Sources */,
-				B1FC54FD1E80B40300BBC05F /* SearchRouteVC.swift in Sources */,
 				B19FFFFF1E818AEB00617D60 /* StationPickerButton.swift in Sources */,
 				B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */,
 				B1B372551E578191001B867E /* LineCell.swift in Sources */,
@@ -299,6 +294,7 @@
 				B1B593F01E6083DF00DBC5AB /* DeparturesTableVC.swift in Sources */,
 				B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */,
 				B1BC897E1E549098000C82C1 /* AppDelegate.swift in Sources */,
+				B18A77FD1E835D3B00AA8DC1 /* RoutePlaner.swift in Sources */,
 				B19FFFFB1E80C07000617D60 /* Station.swift in Sources */,
 				B10611C71E54E80100696685 /* Toolbox.swift in Sources */,
 			);

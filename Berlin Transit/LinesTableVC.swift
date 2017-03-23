@@ -42,15 +42,15 @@ class LinesTableVC: UITableViewController {
     func setFavorite(favorite: Bool) {
         if favorite {
             self.navigationItem.rightBarButtonItem?.title = String.fontAwesomeIcon(name: .heart)
-            addToFavoriteStations(station: self.station)
+            DataKit.addToFavoriteStations(station: self.station)
         } else {
             self.navigationItem.rightBarButtonItem?.title = String.fontAwesomeIcon(name: .heartO)
-            removeFromFavoriteStations(station: self.station)
+            DataKit.removeFromFavoriteStations(station: self.station)
         }
     }
     
     func toggleFavorite() {
-        if isFavoriteStation(station: self.station) {
+        if DataKit.isFavoriteStation(station: self.station) {
             self.setFavorite(favorite: false)
         } else {
             self.setFavorite(favorite: true)
@@ -58,15 +58,15 @@ class LinesTableVC: UITableViewController {
     }
     
     func refreshData() {
-        if isFavoriteStation(station: self.station) {
+        if DataKit.isFavoriteStation(station: self.station) {
             self.setFavorite(favorite: true)
         } else {
             self.setFavorite(favorite: false)
         }
         
         DataKit.getLines(id: self.station.id) { _lines, error in
-            if let stationPicker = self.parent as? StationPicker {
-                MBProgressHUD.hide(for: stationPicker.view, animated: true)
+            if let navView = self.navigationController?.view {
+                MBProgressHUD.hide(for: navView, animated: true)
             }
             
             guard error == nil else {

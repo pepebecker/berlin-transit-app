@@ -27,7 +27,7 @@ class FavoritesTableVC: UITableViewController {
         self.navigationItem.leftBarButtonItem?.target = self
         self.navigationItem.leftBarButtonItem?.action = #selector(reorderButtonPressed)
         
-        self.stations = loadFavorites()
+        self.stations = DataKit.loadFavorites()
         self.tableView.reloadData()
     }
     
@@ -70,7 +70,7 @@ class FavoritesTableVC: UITableViewController {
         let station = self.stations[sourceIndexPath.row]
         self.stations.remove(at: sourceIndexPath.row)
         self.stations.insert(station, at: destinationIndexPath.row)
-        moveFavoriteStation(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        DataKit.moveFavoriteStation(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -80,7 +80,7 @@ class FavoritesTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedStation = self.stations[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let linesTableVC = storyboard.instantiateViewController(withIdentifier: "linesTableCV") as? LinesTableVC {
+        if let linesTableVC = storyboard.instantiateViewController(withIdentifier: "linesTable") as? LinesTableVC {
             linesTableVC.title = self.selectedStation.name
             linesTableVC.station = self.selectedStation
             if let navView = self.navigationController?.view {

@@ -16,6 +16,7 @@ let VBB_LOGOS: [String] = ["bus", "express-bus", "express", "ferry", "metro-bus"
                            "on-call-bus", "regional", "special-bus", "suburban", "subway", "tram"]
 
 func makeRequest(request: URLRequest, completion: @escaping (Any, Error?)->Void) {
+    print("GET: \((request.url?.absoluteString)!)")
     if currentTask != nil {
         currentTask?.cancel()
     }
@@ -23,7 +24,9 @@ func makeRequest(request: URLRequest, completion: @escaping (Any, Error?)->Void)
     currentTask = URLSession.shared.dataTask(with: request) { data, response, error in
         guard error == nil else {
             print("Error sending request: \(error!.localizedDescription)")
-            completion([], error)
+            if error!.localizedDescription != "cancelled" {
+                completion([], error)
+            }
             return
         }
         
@@ -42,66 +45,6 @@ func makeRequest(request: URLRequest, completion: @escaping (Any, Error?)->Void)
     }
     
     currentTask?.resume()
-}
-
-func loadFavorites() -> [Station] {
-    let defaults = UserDefaults.standard
-    if let list = defaults.array(forKey: "favoriteStations") as? [Station] {
-        return list
-    } else {
-        return []
-    }
-}
-
-
-func isFavoriteStation(station: Station) -> Bool {
-    for favorite in loadFavorites() {
-        if station.id == favorite.id {
-           return true
-        }
-    }
-    return false
-}
-
-func addToFavoriteStations(station: Station) {
-//    let defaults = UserDefaults.standard
-//    
-//    var favoriteStations = Array(loadFavorites())
-//    
-//    if !isFavoriteStation(station: station) {
-//        favoriteStations.append(station)
-//        defaults.set(favoriteStations, forKey: "favoriteStations")
-//    }
-}
-
-func removeFromFavoriteStations(station: Station) {
-//    let defaults = UserDefaults.standard
-//    
-//    var favoriteStations = Array(loadFavorites())
-//    
-//    if isFavoriteStation(station: station) {
-//        if let index = favoriteStations.index(where: { (_station) -> Bool in
-//            return compareStations(station1: station, station2: _station)
-//        }) {
-//            favoriteStations.remove(at: index)
-//            defaults.set(favoriteStations, forKey: "favoriteStations")
-//        }
-//    }
-}
-
-func moveFavoriteStation(fromIndex: Int, toIndex: Int) {
-    let defaults = UserDefaults.standard
-    
-    var favoriteStations = Array(loadFavorites())
-    
-    if fromIndex > -1 && fromIndex < favoriteStations.count {
-        if toIndex > -1 && toIndex < favoriteStations.count {
-            let station = favoriteStations[fromIndex]
-            favoriteStations.remove(at: fromIndex)
-            favoriteStations.insert(station, at: toIndex)
-            defaults.set(favoriteStations, forKey: "favoriteStations")
-        }
-    }
 }
 
 func downloadColors() {

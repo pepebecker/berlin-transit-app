@@ -212,4 +212,73 @@ class DataKit: NSObject {
             completion([], nil)
         }
     }
+    
+    // MARK: - Favorites
+    class func loadFavorites() -> [Station] {
+        let defaults = UserDefaults.standard
+        if let favoritesData = defaults.object(forKey: "favoriteStations") as? Data { // NSData
+            if let favorites = NSKeyedUnarchiver.unarchiveObject(with: favoritesData) as? [Station] {
+                return favorites
+            }
+        }
+        
+        return []
+    }
+    
+    
+    class func isFavoriteStation(station: Station) -> Bool {
+        for favorite in loadFavorites() {
+            if station.id == favorite.id {
+                return true
+            }
+        }
+        return false
+    }
+    
+    class func addToFavoriteStations(station: Station) {
+        let defaults = UserDefaults.standard
+        
+        var favoriteStations = Array(loadFavorites())
+        
+        if !isFavoriteStation(station: station) {
+            favoriteStations.append(station)
+            let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
+            defaults.setValue(favoritesData, forKey: "favoriteStations")
+            defaults.synchronize()
+        }
+    }
+    
+    class func removeFromFavoriteStations(station: Station) {
+        let defaults = UserDefaults.standard
+
+        var favoriteStations = Array(loadFavorites())
+
+        if isFavoriteStation(station: station) {
+            if let index = favoriteStations.index(where: { (favorite) -> Bool in
+                return station.id == favorite.id
+            }) {
+                favoriteStations.remove(at: index)
+                let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
+                defaults.setValue(favoritesData, forKey: "favoriteStations")
+                defaults.synchronize()
+            }
+        }
+    }
+    
+    class func moveFavoriteStation(fromIndex: Int, toIndex: Int) {
+        let defaults = UserDefaults.standard
+        
+        var favoriteStations = Array(loadFavorites())
+        
+        if fromIndex > -1 && fromIndex < favoriteStations.count {
+            if toIndex > -1 && toIndex < favoriteStations.count {
+                let station = favoriteStations[fromIndex]
+                favoriteStations.remove(at: fromIndex)
+                favoriteStations.insert(station, at: toIndex)
+                let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
+                defaults.setValue(favoritesData, forKey: "favoriteStations")
+                defaults.synchronize()
+            }
+        }
+    }
 }
