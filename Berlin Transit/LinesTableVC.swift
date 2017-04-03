@@ -7,15 +7,19 @@
 //
 
 import UIKit
-import MBProgressHUD
+import VBB
+//import MBProgressHUD
 
 class LinesTableVC: UITableViewController {
     
     // MARK: - Propeties
     
     var station = Station()
-    var lines = [Line]()
     var selectedLine = Line()
+    
+    // 7 Lines: Suburban, Subway, Tram, Bus, Express, Regional, Ferry
+    var lineGroups: [[Line]] = [[Line](), [Line](), [Line](), [Line](), [Line](), [Line](), [Line]()]
+    let lineTitles = ["Suburban", "Subway", "Tram", "Bus", "Regional", "Express", "Ferry"]
     
     // MARK: - Delgate Methods
     
@@ -42,15 +46,15 @@ class LinesTableVC: UITableViewController {
     func setFavorite(favorite: Bool) {
         if favorite {
             self.navigationItem.rightBarButtonItem?.title = String.fontAwesomeIcon(name: .heart)
-            DataKit.addToFavoriteStations(station: self.station)
+            VBBFavorites.addToFavoriteStations(station: self.station)
         } else {
             self.navigationItem.rightBarButtonItem?.title = String.fontAwesomeIcon(name: .heartO)
-            DataKit.removeFromFavoriteStations(station: self.station)
+            VBBFavorites.removeFromFavoriteStations(station: self.station)
         }
     }
     
     func toggleFavorite() {
-        if DataKit.isFavoriteStation(station: self.station) {
+        if VBBFavorites.isFavoriteStation(station: self.station) {
             self.setFavorite(favorite: false)
         } else {
             self.setFavorite(favorite: true)
@@ -58,16 +62,14 @@ class LinesTableVC: UITableViewController {
     }
     
     func refreshData() {
-        if DataKit.isFavoriteStation(station: self.station) {
+        if VBBFavorites.isFavoriteStation(station: self.station) {
             self.setFavorite(favorite: true)
         } else {
             self.setFavorite(favorite: false)
         }
         
-        DataKit.getLines(id: self.station.id) { _lines, error in
-            if let navView = self.navigationController?.view {
-                MBProgressHUD.hide(for: navView, animated: true)
-            }
+        VBBStations.getLines(id: self.station.id) { _lines, error in
+//            MBProgressHUD.hideActive()
             
             guard error == nil else {
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -78,7 +80,21 @@ class LinesTableVC: UITableViewController {
                 return
             }
             
-            self.lines = DataKit.combineLines(lines: _lines)
+            self.lineGroups.removeAll()
+            for _ in 1...7 {
+                self.lineGroups.append([Line]())
+            }
+            
+            let lines = VBBStations.combineLines(lines: _lines)
+            
+            let convert = ["suburban": 0, "subway": 1, "tram": 2, "bus": 3, "regional": 4, "dont-include-express": 5, "ferry": 6]
+            
+            for line in lines {
+                if let index = convert[line.type] {
+                    self.lineGroups[index].append(line)
+                }
+            }
+            
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -101,51 +117,66 @@ extension LinesTableVC {
 // MARK: - Table view data source
 extension LinesTableVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if self.lines.count > 0 {
-            return 1
+        return self.lineGroups.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.lineGroups[section].count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.lineGroups[section].count > 0 {
+            return 26
         } else {
             return 0
         }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.lines.count
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view: LineHeaderView? = LineHeaderView()
+        
+        let line = self.lineGroups[section][0]
+        
+        view?.image = VBBLogos.getLogo(name: line.type)
+        
+        view?.title = self.lineTitles[section]
+        
+        if let color = line.color["logo"] {
+            view?.backgroundColor =  VBBColors.color(hex: color)
+        }
+        
+        if section == 5 {
+            view?.textColor = .black
+        } else {
+            view?.textColor = .white
+        }
+        
+        return view
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lineCell", for: indexPath) as! LineCell
         
-        let line = self.lines[indexPath.row]
+        let line = self.lineGroups[indexPath.section][indexPath.row]
         
-        cell.icon.image = UIImage(named: line.image)
-        
-        cell.lineLabel.text = line.name
-        
-        cell.lineBackgroundColor = UIColor(hex: line.color["bg"]!)
-        
-        cell.lineTextColor = UIColor(hex: line.color["fg"]!)
-
-        if line.type == "suburban" {
-            cell.lineShape = .Round
-        } else {
-            cell.lineShape = .Rect
-        }
+        cell.lineView.line = line
+        cell.lineView.fontSize = 15
+        cell.lineViewColor = VBBColors.color(hex: line.color["bg"]!)
 
         cell.direction1Label.text = line.direction1
 
         cell.direction2Label.text = line.direction2
         
-        if TimeInterval(line.when1).getMinutes() <= 0 {
+        if VBBUtils.getMinutes(timestamp: line.when1) <= 0 {
             cell.time1Label.text = "now"
         } else {
-            cell.time1Label.text = "\(TimeInterval(line.when1).getMinutes()) min"
+            cell.time1Label.text = "\(VBBUtils.getMinutes(timestamp: line.when1)) min"
         }
         
-        if TimeInterval(line.when2).getMinutes() <= 0 {
+        if VBBUtils.getMinutes(timestamp: line.when2) <= 0 {
             cell.time2Label.text = "now"
         } else {
-            cell.time2Label.text = "\(TimeInterval(line.when2).getMinutes()) min"
+            cell.time2Label.text = "\(VBBUtils.getMinutes(interval: TimeInterval(line.when2))) min"
         }
         
         return cell
@@ -156,7 +187,7 @@ extension LinesTableVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedLine = self.lines[indexPath.row]
+        self.selectedLine = self.lineGroups[indexPath.section][indexPath.row]
         self.performSegue(withIdentifier: "showDepartures", sender: self)
     }
 }

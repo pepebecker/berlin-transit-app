@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import MBProgressHUD
+import VBB
+//import MBProgressHUD
 
 class FavoritesTableVC: UITableViewController {
     
@@ -27,7 +28,7 @@ class FavoritesTableVC: UITableViewController {
         self.navigationItem.leftBarButtonItem?.target = self
         self.navigationItem.leftBarButtonItem?.action = #selector(reorderButtonPressed)
         
-        self.stations = DataKit.loadFavorites()
+        self.stations = VBBFavorites.loadFavorites()
         self.tableView.reloadData()
     }
     
@@ -70,7 +71,7 @@ class FavoritesTableVC: UITableViewController {
         let station = self.stations[sourceIndexPath.row]
         self.stations.remove(at: sourceIndexPath.row)
         self.stations.insert(station, at: destinationIndexPath.row)
-        DataKit.moveFavoriteStation(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        VBBFavorites.moveFavoriteStation(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -83,9 +84,9 @@ class FavoritesTableVC: UITableViewController {
         if let linesTableVC = storyboard.instantiateViewController(withIdentifier: "linesTable") as? LinesTableVC {
             linesTableVC.title = self.selectedStation.name
             linesTableVC.station = self.selectedStation
-            if let navView = self.navigationController?.view {
-                MBProgressHUD.showAdded(to: navView, animated: true)
-            }
+//            if let navView = self.navigationController?.view {
+//                MBProgressHUD.showAdded(to: navView)
+//            }
             self.navigationController?.pushViewController(linesTableVC, animated: true)
         }
     }

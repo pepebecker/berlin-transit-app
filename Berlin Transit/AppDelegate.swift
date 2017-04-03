@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VBB
 import MBProgressHUD
 
 @UIApplicationMain
@@ -31,9 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarVC.viewControllers?[1].tabBarItem.image = UIImage.fontAwesomeIcon(name: .search, textColor: .black, size: size)
             tabBarVC.viewControllers?[3].tabBarItem.image = UIImage.fontAwesomeIcon(name: .mapO, textColor: .black, size: size)
             tabBarVC.viewControllers?[3].tabBarItem.selectedImage = UIImage.fontAwesomeIcon(name: .map, textColor: .black, size: size)
+            tabBarVC.viewControllers?[4].tabBarItem.image = UIImage.fontAwesomeIcon(name: .cogs, textColor: .black, size: size)
         }
 
-        downloadColors()
+        VBBColors.downloadColors()
         
         return true
     }

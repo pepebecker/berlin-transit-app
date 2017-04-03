@@ -1,15 +1,15 @@
 //
-//  DataKit.swift
+//  VBBStations.swift
 //  Berlin Transit
 //
-//  Created by Pepe Becker on 21/03/2017.
+//  Created by Pepe Becker on 24/03/2017.
 //  Copyright © 2017 Pepe Becker. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 
-class DataKit: NSObject {
+public class VBBStations: NSObject {
     private class func castDicToStation(stationDict: [String:Any]) -> Station {
         let station = Station()
         
@@ -62,34 +62,36 @@ class DataKit: NSObject {
                     }
                 }
                 
-                if !VBB_LOGOS.contains(line.image) {
+                if !VBBLogos.hasLogo(name: line.image) {
                     line.image = type
                 }
                 
-                if let colors = loadColors() {
-                    if ["suburban", "subway", "tram"].contains(type) {
-                        if let line_color = colors[type]?[line.name] as? [String:String] {
+                // Colors
+                
+                if let type_color = line_type["color"] as? String {
+                    line.color["logo"] = type_color
+                    line.color["bg"] = type_color
+                    line.color["fg"] = "FFFFFF"
+                }
+                
+                if let colors = VBBColors.loadColors() {
+                    
+                    if let isMetro = product["metro"] as? Bool, let isExpress = product["express"] as? Bool, isMetro, !isExpress {
+                        if let line_color = colors["metro"] as? [String:String] {
                             if let bg = line_color["bg"], let fg = line_color["fg"] {
-                                line.color = ["bg": bg, "fg": fg]
+                                line.color["bg"] = bg
+                                line.color["fg"] = fg
                             }
-                        }
-                    }
-                    else if let color = line_type["color"] as? String {
-                        line.color = ["bg": color, "fg": "fff"]
-                    }
-                    else if let line_color = colors["unknown"] as? [String:String] {
-                        if let bg = line_color["bg"], let fg = line_color["fg"] {
-                            line.color = ["bg": bg, "fg": fg]
                         }
                     }
                     
-                    if let isMetro = product["metro"] as? Bool, isMetro {
-                        if let line_color = colors["metro"] as? [String:String] {
-                            if let bg = line_color["bg"], let fg = line_color["fg"] {
-                                line.color = ["bg": bg, "fg": fg]
-                            }
+                    if let line_color = colors[type]?[line.name] as? [String:String] {
+                        if let bg = line_color["bg"], let fg = line_color["fg"] {
+                            line.color["bg"] = bg
+                            line.color["fg"] = fg
                         }
                     }
+                    
                 }
             }
         }
@@ -111,7 +113,7 @@ class DataKit: NSObject {
         return lines
     }
     
-    class func combineLines(lines: [Line]) -> [Line] {
+    public class func combineLines(lines: [Line]) -> [Line] {
         var list = [Line]()
         for line in lines {
             let index = list.index {
@@ -130,12 +132,12 @@ class DataKit: NSObject {
         return list
     }
     
-    class func getNearbyStations(location: CLLocation, completion: @escaping ([Station], Error?)->Void) {
+    public class func getNearbyStations(location: CLLocation, completion: @escaping ([Station], Error?)->Void) {
         let latitude = Double(location.coordinate.latitude)
         let longitude = Double(location.coordinate.longitude)
         
-        if let url = URL(string: "https://transport.rest/stations/nearby?latitude=\(latitude)&longitude=\(longitude)") {
-            makeRequest(request: URLRequest(url: url)) { stationsArray, error in
+        if let url = URL(string: "\(VBBUtils.getHostname())/stations/nearby?latitude=\(latitude)&longitude=\(longitude)") {
+            VBBUtils.makeRequest(url: url) { stationsArray, error in
                 if let stationsArray = stationsArray as? [[String:Any]] {
                     DispatchQueue.main.async {
                         completion(castArrayToStatiosList(stationsArray: stationsArray), error)
@@ -151,11 +153,11 @@ class DataKit: NSObject {
         }
     }
     
-    class func queryStations(searchText: String, completion: @escaping ([Station], Error?)->Void ) {
+    public class func queryStations(searchText: String, completion: @escaping ([Station], Error?)->Void ) {
         let query = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
-        if let url = URL(string: "https://transport.rest/stations?completion=true&query=\(query!)") {
-            makeRequest(request: URLRequest(url: url)) { (stationsArray, error: Error?) in
+        if let url = URL(string: "\(VBBUtils.getHostname())/stations?completion=true&query=\(query!)") {
+            VBBUtils.makeRequest(url: url) { (stationsArray, error: Error?) in
                 if let stationsArray = stationsArray as? [[String:Any]] {
                     DispatchQueue.main.async {
                         completion(castArrayToStatiosList(stationsArray: stationsArray), error)
@@ -171,9 +173,9 @@ class DataKit: NSObject {
         }
     }
     
-    class func getLines(id: String, duration: Int = 10, completion: @escaping ([Line], Error?)->Void) {
-        if let url = URL(string: "https://transport.rest/stations/\(id)/departures?duration=\(duration)") {
-            makeRequest(request: URLRequest(url: url)) { linesArray, error in
+    public class func getLines(id: String, duration: Int = 10, when: Date = Date(), completion: @escaping ([Line], Error?)->Void) {
+        if let url = URL(string: "\(VBBUtils.getHostname())/stations/\(id)/departures?duration=\(duration)&when=\(VBBUtils.getTimestamp(date: when))") {
+            VBBUtils.makeRequest(url: url) { linesArray, error in
                 if let linesArray = linesArray as? [[String:Any]] {
                     var linesList = self.castArrayToLinesList(linesArray: linesArray)
                     
@@ -213,72 +215,17 @@ class DataKit: NSObject {
         }
     }
     
-    // MARK: - Favorites
-    class func loadFavorites() -> [Station] {
-        let defaults = UserDefaults.standard
-        if let favoritesData = defaults.object(forKey: "favoriteStations") as? Data { // NSData
-            if let favorites = NSKeyedUnarchiver.unarchiveObject(with: favoritesData) as? [Station] {
-                return favorites
-            }
-        }
-        
-        return []
-    }
-    
-    
-    class func isFavoriteStation(station: Station) -> Bool {
-        for favorite in loadFavorites() {
-            if station.id == favorite.id {
-                return true
-            }
-        }
-        return false
-    }
-    
-    class func addToFavoriteStations(station: Station) {
-        let defaults = UserDefaults.standard
-        
-        var favoriteStations = Array(loadFavorites())
-        
-        if !isFavoriteStation(station: station) {
-            favoriteStations.append(station)
-            let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
-            defaults.setValue(favoritesData, forKey: "favoriteStations")
-            defaults.synchronize()
-        }
-    }
-    
-    class func removeFromFavoriteStations(station: Station) {
-        let defaults = UserDefaults.standard
-
-        var favoriteStations = Array(loadFavorites())
-
-        if isFavoriteStation(station: station) {
-            if let index = favoriteStations.index(where: { (favorite) -> Bool in
-                return station.id == favorite.id
-            }) {
-                favoriteStations.remove(at: index)
-                let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
-                defaults.setValue(favoritesData, forKey: "favoriteStations")
-                defaults.synchronize()
-            }
-        }
-    }
-    
-    class func moveFavoriteStation(fromIndex: Int, toIndex: Int) {
-        let defaults = UserDefaults.standard
-        
-        var favoriteStations = Array(loadFavorites())
-        
-        if fromIndex > -1 && fromIndex < favoriteStations.count {
-            if toIndex > -1 && toIndex < favoriteStations.count {
-                let station = favoriteStations[fromIndex]
-                favoriteStations.remove(at: fromIndex)
-                favoriteStations.insert(station, at: toIndex)
-                let favoritesData = NSKeyedArchiver.archivedData(withRootObject: favoriteStations)
-                defaults.setValue(favoritesData, forKey: "favoriteStations")
-                defaults.synchronize()
-            }
+    public class func getRoutes(from: String, to: String, when: Date = Date(), completion: @escaping ([[String:Any]])->Void) {
+        if let url = URL(string: "\(VBBUtils.getHostname())/routes?from=\(from)&to=\(to)&when=\(VBBUtils.getTimestamp(date: when))") {
+            VBBUtils.makeRequest(url: url, completion: { routes, error in
+                if let routes = routes as? [[String:Any]] {
+                    completion(routes)
+                } else {
+                    print("Failed to cast routes")
+                }
+            })
+        } else {
+            print("Failed to create request url")
         }
     }
 }

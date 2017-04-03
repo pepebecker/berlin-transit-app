@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import VBB
 
 class DeparturesTableVC: UITableViewController {
+    
+    @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var lineLabel: UILabel!
     
     var station = Station()
     var currentLine = Line()
@@ -16,6 +20,11 @@ class DeparturesTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let lineView = LineView()
+        lineView.adjustConstraints = false
+        lineView.line = self.currentLine
+        self.navigationItem.titleView = lineView
         
         self.tableView.allowsSelection = false
         
@@ -34,7 +43,7 @@ class DeparturesTableVC: UITableViewController {
     }
     
     func refreshData() {
-        DataKit.getLines(id: self.station.id, duration: 60) { lines, error in
+        VBBStations.getLines(id: self.station.id, duration: 60) { lines, error in
             guard error == nil else {
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -73,21 +82,21 @@ class DeparturesTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "departureCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "departureCell", for: indexPath) as! DepartureCell
         
         if let direction = self.departures[indexPath.row]["direction"] as? String {
-            cell.textLabel?.text = direction
+            cell.title = direction
         }
 
         if let time = self.departures[indexPath.row]["time"] as? Int {
-            let minutes = TimeInterval(time).getMinutes()
+            let minutes = VBBUtils.getMinutes(timestamp: time)
             
             var text = "\(minutes) min"
             if minutes <= 0 {
                 text = "now"
             }
             
-            cell.detailTextLabel?.text = text
+            cell.detail = text
         }
 
         return cell

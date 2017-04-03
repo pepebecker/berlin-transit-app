@@ -2,25 +2,25 @@
 //  Station.swift
 //  Berlin Transit
 //
-//  Created by Pepe Becker on 21/03/2017.
+//  Created by Pepe Becker on 24/03/2017.
 //  Copyright © 2017 Pepe Becker. All rights reserved.
 //
 
 import UIKit
 
-class Station: NSObject, NSCoding {
-    var id = String()
-    var name = String()
-    var latitude = Double()
-    var longitude = Double()
-    var distance = Int()
-    var lines = [[String:Any]]()
+public class Station: NSObject, NSCoding {
+    public var id = String()
+    public var name = String()
+    public var latitude = Double()
+    public var longitude = Double()
+    public var distance = Int()
+    public var lines = [[String:Any]]()
     
-    override init() {
+    override public init() {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         if let id = aDecoder.decodeObject(forKey: "id") as? String {
             self.id = id
         }
@@ -46,7 +46,7 @@ class Station: NSObject, NSCoding {
         }
     }
     
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.id, forKey: "id")
         aCoder.encode(self.name, forKey: "name")
         aCoder.encode(self.latitude, forKey: "latitude")

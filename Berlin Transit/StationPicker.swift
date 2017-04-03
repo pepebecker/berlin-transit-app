@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreLocation
-import MBProgressHUD
+import VBB
+//import MBProgressHUD
 import FontAwesome_swift
 
 @objc protocol StationPickerDelegate {
@@ -28,7 +29,7 @@ import FontAwesome_swift
     var usingCurrentLocation = false
     var isUpdatingLocation = false
     var currentLocationText = "Current Location"
-    var progressHud: MBProgressHUD?
+//    var progressHud: MBProgressHUD?
     var noNearbyStationsFound = false
     
     // SearchBar
@@ -41,6 +42,8 @@ import FontAwesome_swift
     var resetOnViewDisappear = false
     
     var stations = [Station]()
+    
+    var lastInput = String()
     
     // MARK: - Delegate Methods
 
@@ -57,8 +60,8 @@ import FontAwesome_swift
         self.tableViewController.tableView.dataSource = self
         self.tableViewController.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "stationCell")
         
+        // Cancel Button
         if self.canCancel {
-            // Cancel Button
             self.tableViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         } else {
             self.tableViewController.navigationItem.leftBarButtonItems?.removeAll()
@@ -100,6 +103,8 @@ import FontAwesome_swift
         }
         
         if self.autoFocus {
+            self.searchBar.text = self.lastInput
+            self.searchBar(self.searchBar, textDidChange: Optional(self.lastInput)!)
             self.searchBar.becomeFirstResponder()
         }
     }
@@ -116,6 +121,7 @@ import FontAwesome_swift
     // MARK: - Helper Methods
     
     func cancel() {
+        self.lastInput.removeAll()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -142,26 +148,26 @@ import FontAwesome_swift
         
         self.setSearchBar(useCurrentLocation: true)
         
-        if let superview = self.view.superview {
-            if self.progressHud == nil {
-                self.progressHud = MBProgressHUD.showAdded(to: superview, animated: true)
-                self.progressHud?.hide(animated: true, afterDelay: 10)
-            }
-        }
+//        if let superview = self.view.superview {
+//            if self.progressHud == nil {
+//                self.progressHud = MBProgressHUD.showAdded(to: superview)
+//                self.progressHud?.hide(animated: true, afterDelay: 10)
+//            }
+//        }
         
         if let location = self.locationManager.location {
-            DataKit.getNearbyStations(location: location) { nearbyStations, error in
+            VBBStations.getNearbyStations(location: location) { nearbyStations, error in
                 self.stations = nearbyStations
                 
                 self.noNearbyStationsFound = self.stations.count <= 0
                 
                 self.tableViewController.tableView.reloadData()
-                if let progressHud = self.progressHud {
-                    progressHud.hide(animated: true)
-                    self.locationManager.stopUpdatingLocation()
-                    self.isUpdatingLocation = false
-                    self.progressHud = nil
-                }
+//                if let progressHud = self.progressHud {
+//                    progressHud.hide(animated: true)
+//                    self.locationManager.stopUpdatingLocation()
+//                    self.isUpdatingLocation = false
+//                    self.progressHud = nil
+//                }
                 
                 guard error == nil else {
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -174,12 +180,12 @@ import FontAwesome_swift
                 }
             }
         } else {
-            if let progressHud = self.progressHud {
-                progressHud.hide(animated: true)
-                self.locationManager.stopUpdatingLocation()
-                self.isUpdatingLocation = false
-                self.progressHud = nil
-            }
+//            if let progressHud = self.progressHud {
+//                progressHud.hide(animated: true)
+//                self.locationManager.stopUpdatingLocation()
+//                self.isUpdatingLocation = false
+//                self.progressHud = nil
+//            }
             
             let alert = UIAlertController(title: "Error", message: "Failed to get current location", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
@@ -192,6 +198,7 @@ import FontAwesome_swift
     
     func setSearchBar(useCurrentLocation: Bool) {
         if (useCurrentLocation) {
+            self.lastInput.removeAll()
             self.searchTextField.textColor = self.view.tintColor
             self.searchTextField.text = currentLocationText
             self.searchTextField.resignFirstResponder()
@@ -267,13 +274,20 @@ extension StationPicker: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.stations.count > 0 {
+            if let text = self.searchBar.text, !self.usingCurrentLocation {
+                self.lastInput = text
+            }
             self.pickerDelegate?.stationPicker(didPickStation: self.stations[indexPath.row], sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
         } else {
             if self.searchBar.isFirstResponder {
                 self.searchBar.resignFirstResponder()
             } else {
-                self.searchBar.becomeFirstResponder()
+                if self.tableViewController.tableView.contentOffset.y <= -40 {
+                    self.searchBar.becomeFirstResponder()
+                } else {
+                    self.tableViewController.tableView.scrollRectToVisible(self.searchBar.frame, animated: true)
+//                    self.searchBar.perform(#selector(becomeFirstResponder), with: nil, afterDelay: 0.3)
+                }
             }
         }
     }
@@ -317,7 +331,7 @@ extension StationPicker: UISearchBarDelegate {
             return
         }
         
-        DataKit.queryStations(searchText: searchText) { queriedStations, error in
+        VBBStations.queryStations(searchText: searchText) { queriedStations, error in
             guard error == nil else {
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

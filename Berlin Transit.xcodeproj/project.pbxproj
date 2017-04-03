@@ -8,38 +8,78 @@
 
 /* Begin PBXBuildFile section */
 		0558BF1951F6FB173271EFAD /* Pods_Berlin_Transit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */; };
-		B10611C71E54E80100696685 /* Toolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C61E54E80100696685 /* Toolbox.swift */; };
+		B10611C71E54E80100696685 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C61E54E80100696685 /* Utils.swift */; };
 		B10611C91E54ED1200696685 /* LinesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10611C81E54ED1200696685 /* LinesTableVC.swift */; };
+		B10C21F21E92C86D0086A1BA /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10C21F11E92C86D0086A1BA /* SettingsVC.swift */; };
+		B13AC5D31E89DA61008CDF67 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13AC5D21E89DA61008CDF67 /* LineView.swift */; };
 		B14EB5601E80789300D62773 /* AvailableRoutesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */; };
+		B169859C1E8A9EB5004F1248 /* LineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169859B1E8A9EB5004F1248 /* LineHeaderView.swift */; };
+		B169859E1E8AE8EC004F1248 /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169859D1E8AE8EB004F1248 /* DepartureCell.swift */; };
 		B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */; };
-		B18A77FD1E835D3B00AA8DC1 /* RoutePlaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */; };
-		B19506A11E81F56D00AC904C /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19506A01E81F56D00AC904C /* Line.swift */; };
+		B1781E551E8989CB0044CB4A /* transitfront-negativ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1CED7E51E619B3000E184A0 /* transitfront-negativ.ttf */; };
+		B17CC1FC1E85A7F500AAEF39 /* VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = B17CC1FA1E85A7F500AAEF39 /* VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B17CC1FF1E85A7F500AAEF39 /* VBB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17CC1F81E85A7F500AAEF39 /* VBB.framework */; };
+		B17CC2001E85A7F500AAEF39 /* VBB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B17CC1F81E85A7F500AAEF39 /* VBB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B17CC2051E85A8CE00AAEF39 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17CC2041E85A8CE00AAEF39 /* Station.swift */; };
+		B17CC2071E85A94700AAEF39 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17CC2061E85A94700AAEF39 /* Line.swift */; };
+		B18A77FD1E835D3B00AA8DC1 /* RoutePlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18A77FC1E835D3B00AA8DC1 /* RoutePlanner.swift */; };
 		B19F00011E818D6900617D60 /* StationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19F00001E818D6900617D60 /* StationPicker.swift */; };
-		B19FFFFB1E80C07000617D60 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19FFFFA1E80C07000617D60 /* Station.swift */; };
-		B19FFFFD1E80CD4000617D60 /* DataKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19FFFFC1E80CD4000617D60 /* DataKit.swift */; };
-		B19FFFFF1E818AEB00617D60 /* StationPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19FFFFE1E818AEB00617D60 /* StationPickerButton.swift */; };
 		B1B372551E578191001B867E /* LineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B372541E578191001B867E /* LineCell.swift */; };
 		B1B593F01E6083DF00DBC5AB /* DeparturesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */; };
 		B1BC897E1E549098000C82C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC897D1E549098000C82C1 /* AppDelegate.swift */; };
 		B1BC89831E549098000C82C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89811E549098000C82C1 /* Main.storyboard */; };
 		B1BC89851E549098000C82C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89841E549098000C82C1 /* Assets.xcassets */; };
 		B1BC89881E549098000C82C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */; };
+		B1DCDA6D1E85AC1900E33537 /* VBBFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCDA6C1E85AC1900E33537 /* VBBFavorites.swift */; };
+		B1DCDA6F1E85AEE600E33537 /* VBBStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCDA6E1E85AEE600E33537 /* VBBStations.swift */; };
+		B1DCDA711E85AF5600E33537 /* VBBLogos.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCDA701E85AF5600E33537 /* VBBLogos.swift */; };
+		B1DCDA731E85B24700E33537 /* VBBColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCDA721E85B24700E33537 /* VBBColors.swift */; };
+		B1DCDA771E85CBB900E33537 /* VBBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCDA761E85CBB900E33537 /* VBBUtils.swift */; };
 		B1E33C151E5B9A15003D9AB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E33C141E5B9A15003D9AB0 /* MapKit.framework */; };
 		B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBAE941E54B4C300F3BDAE /* MapVC.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B17CC1FD1E85A7F500AAEF39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1BC89721E549098000C82C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B17CC1F71E85A7F500AAEF39;
+			remoteInfo = VBB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B17CC1F21E85A6FA00AAEF39 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B17CC2001E85A7F500AAEF39 /* VBB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		229A920EFA154B50973E1D2D /* Pods-Berlin Transit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Berlin Transit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Berlin Transit/Pods-Berlin Transit.release.xcconfig"; sourceTree = "<group>"; };
-		B10611C61E54E80100696685 /* Toolbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbox.swift; sourceTree = "<group>"; };
+		B10611C61E54E80100696685 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B10611C81E54ED1200696685 /* LinesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinesTableVC.swift; sourceTree = "<group>"; };
+		B10C21F11E92C86D0086A1BA /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		B13AC5D21E89DA61008CDF67 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRoutesTableVC.swift; sourceTree = "<group>"; };
+		B169859B1E8A9EB5004F1248 /* LineHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeaderView.swift; sourceTree = "<group>"; };
+		B169859D1E8AE8EB004F1248 /* DepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		B1738CC31E60EA3C00F04943 /* FavoritesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableVC.swift; sourceTree = "<group>"; };
-		B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlaner.swift; sourceTree = "<group>"; };
-		B19506A01E81F56D00AC904C /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		B17CC1F81E85A7F500AAEF39 /* VBB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VBB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B17CC1FA1E85A7F500AAEF39 /* VBB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VBB.h; sourceTree = "<group>"; };
+		B17CC1FB1E85A7F500AAEF39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B17CC2041E85A8CE00AAEF39 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		B17CC2061E85A94700AAEF39 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		B18A77FC1E835D3B00AA8DC1 /* RoutePlanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutePlanner.swift; sourceTree = "<group>"; };
 		B19F00001E818D6900617D60 /* StationPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationPicker.swift; sourceTree = "<group>"; };
-		B19FFFFA1E80C07000617D60 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
-		B19FFFFC1E80CD4000617D60 /* DataKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataKit.swift; sourceTree = "<group>"; };
-		B19FFFFE1E818AEB00617D60 /* StationPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationPickerButton.swift; sourceTree = "<group>"; };
 		B1B372541E578191001B867E /* LineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCell.swift; sourceTree = "<group>"; };
 		B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeparturesTableVC.swift; sourceTree = "<group>"; };
 		B1BC897A1E549098000C82C1 /* Berlin Transit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Transit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +89,11 @@
 		B1BC89871E549098000C82C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1BC89891E549098000C82C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1CED7E51E619B3000E184A0 /* transitfront-negativ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "transitfront-negativ.ttf"; sourceTree = "<group>"; };
+		B1DCDA6C1E85AC1900E33537 /* VBBFavorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBBFavorites.swift; sourceTree = "<group>"; };
+		B1DCDA6E1E85AEE600E33537 /* VBBStations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBBStations.swift; sourceTree = "<group>"; };
+		B1DCDA701E85AF5600E33537 /* VBBLogos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBBLogos.swift; sourceTree = "<group>"; };
+		B1DCDA721E85B24700E33537 /* VBBColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBBColors.swift; sourceTree = "<group>"; };
+		B1DCDA761E85CBB900E33537 /* VBBUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBBUtils.swift; sourceTree = "<group>"; };
 		B1E33C141E5B9A15003D9AB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B1EA492C3DF4AA220B582F1E /* Pods_Berlin_Transit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Berlin_Transit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FBAE941E54B4C300F3BDAE /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -56,10 +101,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B17CC1F41E85A7F500AAEF39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1BC89771E549098000C82C1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17CC1FF1E85A7F500AAEF39 /* VBB.framework in Frameworks */,
 				B1E33C151E5B9A15003D9AB0 /* MapKit.framework in Frameworks */,
 				0558BF1951F6FB173271EFAD /* Pods_Berlin_Transit.framework in Frameworks */,
 			);
@@ -75,9 +128,10 @@
 				B19F00001E818D6900617D60 /* StationPicker.swift */,
 				B10611C81E54ED1200696685 /* LinesTableVC.swift */,
 				B1B593EF1E6083DF00DBC5AB /* DeparturesTableVC.swift */,
-				B18A77FC1E835D3B00AA8DC1 /* RoutePlaner.swift */,
+				B18A77FC1E835D3B00AA8DC1 /* RoutePlanner.swift */,
 				B14EB55F1E80789300D62773 /* AvailableRoutesTableVC.swift */,
 				B1FBAE941E54B4C300F3BDAE /* MapVC.swift */,
+				B10C21F11E92C86D0086A1BA /* SettingsVC.swift */,
 			);
 			name = Controlers;
 			sourceTree = "<group>";
@@ -88,7 +142,9 @@
 				B1BC89811E549098000C82C1 /* Main.storyboard */,
 				B1BC89861E549098000C82C1 /* LaunchScreen.storyboard */,
 				B1B372541E578191001B867E /* LineCell.swift */,
-				B19FFFFE1E818AEB00617D60 /* StationPickerButton.swift */,
+				B169859D1E8AE8EB004F1248 /* DepartureCell.swift */,
+				B13AC5D21E89DA61008CDF67 /* LineView.swift */,
+				B169859B1E8A9EB5004F1248 /* LineHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -96,18 +152,32 @@
 		B14EB5631E80797A00D62773 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B19FFFFA1E80C07000617D60 /* Station.swift */,
-				B19506A01E81F56D00AC904C /* Line.swift */,
-				B19FFFFC1E80CD4000617D60 /* DataKit.swift */,
-				B10611C61E54E80100696685 /* Toolbox.swift */,
+				B10611C61E54E80100696685 /* Utils.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		B17CC1F91E85A7F500AAEF39 /* VBB */ = {
+			isa = PBXGroup;
+			children = (
+				B17CC1FA1E85A7F500AAEF39 /* VBB.h */,
+				B17CC1FB1E85A7F500AAEF39 /* Info.plist */,
+				B17CC2041E85A8CE00AAEF39 /* Station.swift */,
+				B17CC2061E85A94700AAEF39 /* Line.swift */,
+				B1DCDA761E85CBB900E33537 /* VBBUtils.swift */,
+				B1DCDA6C1E85AC1900E33537 /* VBBFavorites.swift */,
+				B1DCDA6E1E85AEE600E33537 /* VBBStations.swift */,
+				B1DCDA701E85AF5600E33537 /* VBBLogos.swift */,
+				B1DCDA721E85B24700E33537 /* VBBColors.swift */,
+			);
+			path = VBB;
 			sourceTree = "<group>";
 		};
 		B1BC89711E549098000C82C1 = {
 			isa = PBXGroup;
 			children = (
 				B1BC897C1E549098000C82C1 /* Berlin Transit */,
+				B17CC1F91E85A7F500AAEF39 /* VBB */,
 				B1BC897B1E549098000C82C1 /* Products */,
 				B1E33C131E5B9A15003D9AB0 /* Frameworks */,
 				D42EE10C0B49546D91988235 /* Pods */,
@@ -118,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				B1BC897A1E549098000C82C1 /* Berlin Transit.app */,
+				B17CC1F81E85A7F500AAEF39 /* VBB.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,7 +227,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B17CC1F51E85A7F500AAEF39 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17CC1FC1E85A7F500AAEF39 /* VBB.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		B17CC1F71E85A7F500AAEF39 /* VBB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B17CC2011E85A7F500AAEF39 /* Build configuration list for PBXNativeTarget "VBB" */;
+			buildPhases = (
+				B17CC1F31E85A7F500AAEF39 /* Sources */,
+				B17CC1F41E85A7F500AAEF39 /* Frameworks */,
+				B17CC1F51E85A7F500AAEF39 /* Headers */,
+				B17CC1F61E85A7F500AAEF39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VBB;
+			productName = VBB;
+			productReference = B17CC1F81E85A7F500AAEF39 /* VBB.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		B1BC89791E549098000C82C1 /* Berlin Transit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1BC898C1E549098000C82C1 /* Build configuration list for PBXNativeTarget "Berlin Transit" */;
@@ -167,10 +267,12 @@
 				B1BC89781E549098000C82C1 /* Resources */,
 				640283C9983686313BCD2F74 /* [CP] Embed Pods Frameworks */,
 				40D0B15DB79F751571954D21 /* [CP] Copy Pods Resources */,
+				B17CC1F21E85A6FA00AAEF39 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B17CC1FE1E85A7F500AAEF39 /* PBXTargetDependency */,
 			);
 			name = "Berlin Transit";
 			productName = "Berlin Transit";
@@ -187,6 +289,12 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Pepe Becker";
 				TargetAttributes = {
+					B17CC1F71E85A7F500AAEF39 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CV2G6G29G8;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
 					B1BC89791E549098000C82C1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = CV2G6G29G8;
@@ -213,15 +321,24 @@
 			projectRoot = "";
 			targets = (
 				B1BC89791E549098000C82C1 /* Berlin Transit */,
+				B17CC1F71E85A7F500AAEF39 /* VBB */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B17CC1F61E85A7F500AAEF39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1BC89781E549098000C82C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1781E551E8989CB0044CB4A /* transitfront-negativ.ttf in Resources */,
 				B1BC89881E549098000C82C1 /* LaunchScreen.storyboard in Resources */,
 				B1BC89851E549098000C82C1 /* Assets.xcassets in Resources */,
 				B1BC89831E549098000C82C1 /* Main.storyboard in Resources */,
@@ -279,28 +396,50 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B17CC1F31E85A7F500AAEF39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1DCDA731E85B24700E33537 /* VBBColors.swift in Sources */,
+				B17CC2051E85A8CE00AAEF39 /* Station.swift in Sources */,
+				B1DCDA771E85CBB900E33537 /* VBBUtils.swift in Sources */,
+				B1DCDA6D1E85AC1900E33537 /* VBBFavorites.swift in Sources */,
+				B17CC2071E85A94700AAEF39 /* Line.swift in Sources */,
+				B1DCDA6F1E85AEE600E33537 /* VBBStations.swift in Sources */,
+				B1DCDA711E85AF5600E33537 /* VBBLogos.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1BC89761E549098000C82C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B10611C91E54ED1200696685 /* LinesTableVC.swift in Sources */,
-				B19FFFFD1E80CD4000617D60 /* DataKit.swift in Sources */,
 				B14EB5601E80789300D62773 /* AvailableRoutesTableVC.swift in Sources */,
 				B19F00011E818D6900617D60 /* StationPicker.swift in Sources */,
-				B19FFFFF1E818AEB00617D60 /* StationPickerButton.swift in Sources */,
+				B13AC5D31E89DA61008CDF67 /* LineView.swift in Sources */,
 				B1FBAE951E54B4C300F3BDAE /* MapVC.swift in Sources */,
 				B1B372551E578191001B867E /* LineCell.swift in Sources */,
-				B19506A11E81F56D00AC904C /* Line.swift in Sources */,
 				B1B593F01E6083DF00DBC5AB /* DeparturesTableVC.swift in Sources */,
 				B1738CC41E60EA3C00F04943 /* FavoritesTableVC.swift in Sources */,
 				B1BC897E1E549098000C82C1 /* AppDelegate.swift in Sources */,
-				B18A77FD1E835D3B00AA8DC1 /* RoutePlaner.swift in Sources */,
-				B19FFFFB1E80C07000617D60 /* Station.swift in Sources */,
-				B10611C71E54E80100696685 /* Toolbox.swift in Sources */,
+				B169859E1E8AE8EC004F1248 /* DepartureCell.swift in Sources */,
+				B18A77FD1E835D3B00AA8DC1 /* RoutePlanner.swift in Sources */,
+				B10611C71E54E80100696685 /* Utils.swift in Sources */,
+				B169859C1E8A9EB5004F1248 /* LineHeaderView.swift in Sources */,
+				B10C21F21E92C86D0086A1BA /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B17CC1FE1E85A7F500AAEF39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B17CC1F71E85A7F500AAEF39 /* VBB */;
+			targetProxy = B17CC1FD1E85A7F500AAEF39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B1BC89811E549098000C82C1 /* Main.storyboard */ = {
@@ -322,6 +461,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B17CC2021E85A7F500AAEF39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CV2G6G29G8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = VBB/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepebecker.VBB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B17CC2031E85A7F500AAEF39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CV2G6G29G8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = VBB/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pepebecker.VBB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		B1BC898A1E549098000C82C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -419,6 +605,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B4707FF69AD334DDE84A7298 /* Pods-Berlin Transit.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CV2G6G29G8;
 				INFOPLIST_FILE = "Berlin Transit/Info.plist";
@@ -433,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 229A920EFA154B50973E1D2D /* Pods-Berlin Transit.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CV2G6G29G8;
 				INFOPLIST_FILE = "Berlin Transit/Info.plist";
@@ -446,6 +634,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B17CC2011E85A7F500AAEF39 /* Build configuration list for PBXNativeTarget "VBB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B17CC2021E85A7F500AAEF39 /* Debug */,
+				B17CC2031E85A7F500AAEF39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B1BC89751E549098000C82C1 /* Build configuration list for PBXProject "Berlin Transit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

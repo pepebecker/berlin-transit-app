@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VBB
 
 class AvailableRoutesTableVC: UITableViewController {
     
@@ -28,7 +29,7 @@ class AvailableRoutesTableVC: UITableViewController {
     
     func refreshData() {
         if let originID = self.origin?.id, let destinationID = self.destination?.id {
-            getRoutes(from: originID, to: destinationID) { routes in
+            VBBStations.getRoutes(from: originID, to: destinationID) { routes in
                 DispatchQueue.main.async {
                     self.availableRoutes = routes
                     self.tableView.reloadData()
@@ -37,20 +38,6 @@ class AvailableRoutesTableVC: UITableViewController {
             }
         } else {
             self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func getRoutes(from: String, to: String, completion: @escaping ([[String:Any]])->Void) {
-        if let url = URL(string: "https://transport.rest/routes?from=\(from)&to=\(to)") {
-            makeRequest(request: URLRequest(url: url), completion: { routes, error in
-                if let routes = routes as? [[String:Any]] {
-                    completion(routes)
-                } else {
-                    print("Failed to cast routes")
-                }
-            })
-        } else {
-            print("Failed to create request url")
         }
     }
 }
